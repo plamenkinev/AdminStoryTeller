@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="theme.css">
+	<title>${@project} Report</title>
+</head>
+
+<body>
+	<h1>Project ${@project}</h1>
+	<table>
+		<th>
+			<td>Story ID</td>
+			<td>Description</td>
+			<td>Closed Date</td>
+			<td>Estimated Hours</td>
+			<td>Spent Hours</td>
+			<td>Names</td>
+		</th>
+	<?rb @stories.each do |story| ?>
+	<?rb clss = story.spent_hours.to_f > 40 ? 'overbooked' : 'notoverbooked' ?>
+		<tr class="#{clss}">
+			<td>${story.story_id}</td>
+			<td>${story.description}</td>
+			<td>${story.closed_date}</td>
+			<td>${story.estimated_hours}</td>
+			<td>${story.spent_hours}</td>
+			<td>${story.names}</td>
+		</tr>
+	<?rb end ?>
+</table>
+</body>
+</html>
